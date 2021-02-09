@@ -1,0 +1,40 @@
+
+{% extends "blog/base.html" %}
+
+{% block content %}
+    <!-- Open database -->
+
+    <!-- Check if there are free rooms -->
+
+    <!-- If no free room disable accomodation checkbox -->
+
+
+    {% for post in posts %}
+        <h2>{{post.title}}</h2>
+        <p>{{post.author}}</p>
+        <p>{{post.date}}</p>
+        <p>{{post.content}}</p>
+    {% endfor %}
+
+    <form action="" method="post">
+        <label for="std_name">student name</label>
+        <input type="text" name="std_name" id="">
+        <label for="reg_no">Reg No</label>
+        <input type="text" name="reg_no" id="">
+        <label for="Sex">Sex</label>
+        Male
+        <input type="radio" name="Sex" id="" value="0">
+        female
+        <input type="radio" name="Sex" id="" value="1">
+        <label for="Payment">Payment</label>
+        Tuition
+        <input type="checkbox" name="payment" id="" value="Tuition">
+        Accomodation
+        <input type="checkbox" name="payment" id="" value="Accomodation">
+        
+        <input type="submit" value="Submit">
+    </form>
+
+<!--    if <name>
+-->
+{% endblock content %}
