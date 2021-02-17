@@ -1,4 +1,3 @@
-
 {% extends "blog/base.html" %}
 
 {% block content %}
@@ -17,22 +16,30 @@
     {% endfor %}
 
     <form action="" method="post">
-        <label for="std_name">student name</label>
-        <input type="text" name="std_name" id="">
-        <label for="reg_no">Reg No</label>
-        <input type="text" name="reg_no" id="">
-        <label for="Sex">Sex</label>
-        Male
-        <input type="radio" name="Sex" id="" value="0">
-        female
-        <input type="radio" name="Sex" id="" value="1">
-        <label for="Payment">Payment</label>
-        Tuition
-        <input type="checkbox" name="payment" id="" value="Tuition">
-        Accomodation
-        <input type="checkbox" name="payment" id="" value="Accomodation">
-        
-        <input type="submit" value="Submit">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Payment Dummy Form</legend>
+            <!-- Student name -->
+            <label for="std_name">student name</label>
+            <input type="text" name="std_name" id="">
+            <!-- Reg no -->
+            <label for="reg_no">Reg No</label>
+            <input type="text" name="reg_no" id="">
+            <!-- Sex -->
+            <label for="Sex">Sex</label>
+            Male
+            <input type="radio" name="Sex" id="" value="0">
+            female
+            <input type="radio" name="Sex" id="" value="1">
+            <label for="Payment">Payment</label>
+            <!-- Checkboxes -->
+            Tuition
+            <input type="checkbox" name="payment" id="" value="Tuition">
+            Accomodation
+            <input type="checkbox" name="payment" id="" value="Accomodation">
+            
+            <input type="submit" value="Submit">
+        </fieldset>
     </form>
 
 <!--    if <name>

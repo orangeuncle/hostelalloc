@@ -7,8 +7,8 @@ class Student(models.Model):
     name = models.TextField()
     regNo = models.CharField(max_length=12)
     sex = models.CharField(max_length=1)
-    hostel = models.IntegerField(max_length=1)
-    room = models.IntegerField(max_length=2)
+    hostel = models.IntegerField()
+    room = models.IntegerField()
     date_payed = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
@@ -22,6 +22,9 @@ class Hostel(models.Model):
     hostel_id = models.IntegerField()
     name = models.TextField()
     gender = models.CharField(max_length=1)
-    rooms = models.IntegerField(max_length=2)
-    room_size = models.IntegerField(max_length=2)
+    rooms = models.IntegerField()
+    room_size = models.IntegerField()
 
+    def __str__(self):
+        name = self.name
+        return name + " Hostel"

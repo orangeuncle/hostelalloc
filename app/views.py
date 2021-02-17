@@ -35,4 +35,4 @@ def about(request):
     return render(request, 'blog/about.html', {'title': 'about'})
 
 def search(request):
-    return render(request, 'blog/search.html', {'title': 'find your room'})
+    return render(request, 'blog/search.html', {'title': 'Find Data'})

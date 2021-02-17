@@ -6,6 +6,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    {% load static %}   <!-- loads the static files -->
+
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="{% static 'css/page.css' %}">
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+
     {% if title %}
         <title>Document - {{ title }}</title>
     {% else %}
@@ -13,6 +20,8 @@
     {% endif %}
 </head>
 <body>
-    {% block content %}{% endblock %}
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
 </body>
 </html>

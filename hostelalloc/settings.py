@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles',   #Installs static files
 ]
 
 MIDDLEWARE = [
@@ -119,3 +119,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Defines static files directories
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    '/app/static/',
+]
