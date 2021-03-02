@@ -8,35 +8,39 @@
     <!-- If no free room disable accomodation checkbox -->
 
 
-    {% for post in posts %}
-        <h2>{{post.title}}</h2>
-        <p>{{post.author}}</p>
-        <p>{{post.date}}</p>
-        <p>{{post.content}}</p>
-    {% endfor %}
-
     <form action="" method="post">
         {% csrf_token %}
         <fieldset>
+            {{ form.As_p }}
             <legend>Payment Dummy Form</legend>
             <!-- Student name -->
             <label for="std_name">student name</label>
-            <input type="text" name="std_name" id="">
+            <input type="text" name="name" id="std_name">
             <!-- Reg no -->
             <label for="reg_no">Reg No</label>
-            <input type="text" name="reg_no" id="">
+            <input type="text" name="regNo" id="reg_no">
             <!-- Sex -->
             <label for="Sex">Sex</label>
             Male
-            <input type="radio" name="Sex" id="" value="0">
+            <input type="radio" name="sex" id="" value="0">
             female
-            <input type="radio" name="Sex" id="" value="1">
+            <input type="radio" name="sex" id="" value="1">
             <label for="Payment">Payment</label>
             <!-- Checkboxes -->
             Tuition
             <input type="checkbox" name="payment" id="" value="Tuition">
             Accomodation
             <input type="checkbox" name="payment" id="" value="Accomodation">
+            
+            <input type="submit" value="Submit">
+        </fieldset>
+    </form>
+    <form action="" method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Payment Dummy Form</legend>
+            
+            {{ form }}
             
             <input type="submit" value="Submit">
         </fieldset>

@@ -1,9 +1,20 @@
 {% extends "blog/base.html" %}
 
 {% block content%}
+    <div class="section">
+        {% for hostel in hostel_list %}
+            <div class="card col">
+                <h2>{{ hostel.name }}</h2>
+                <p>{{ hostel.rooms }}</br></br></p>
+            </div>
+        {% endfor %}
+    </div>
+
+
     <form action="" method="post">
+        {% csrf_token %}
         <label for="reg_no">reg_no</label>
-        <input type="search" name="reg_no" id="">
+        <input type="search" name="reg_no" id="" placeholder="enter student name">
         <input type="button" value="submit">
     </form>
 {% endblock content %}

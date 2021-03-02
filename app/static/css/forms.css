@@ -2,7 +2,7 @@ form {
     width: 80%;
     margin: auto;
 }    
-input {
+input, .block {
     display: block;
     height: 2em;
     width: 60%;
