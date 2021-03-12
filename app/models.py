@@ -6,7 +6,7 @@ from django.utils import timezone
 
 class Student(models.Model):
     name = models.TextField()
-    regNo = models.CharField(max_length=12)
+    regNo = models.CharField(max_length=24)
     sex = models.TextField(default='')
     hostel = models.IntegerField(default=0)
     room = models.IntegerField(default=0)

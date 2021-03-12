@@ -11,10 +11,11 @@ input, .block {
 }
 
 input[type="text"], input[type="search"] {
-    border: 3px solid olive;
+    border: 3px solid rgb(199, 199, 123);
 }
 
-input[type="radio"], input[type="checkbox"] {
+input[type="radio"], input[type="checkbox"], form fieldset ul#id_sex li {
+    list-style: none;
     display: inline;
     height: 2em;
     width: auto;
@@ -22,5 +23,11 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 input[type="submit"] {
-    background-color: teal;
+    background-color: red;
+    /* background-color: teal; */
+}
+
+ul#id_sex li>::marker, ul#id_sex li ::marker, ul#id_sex li+::marker, ::marker {
+    display: none;
+    opacity: 0;
 }
