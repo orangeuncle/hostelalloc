@@ -7,17 +7,23 @@
     <!-- Check if there are free rooms -->
 
     <!-- If no free room disable accomodation checkbox -->
-
-    <form action="" method="post">
-        {% csrf_token %}
-        <fieldset>
-            <legend>Payment Dummy Form</legend>
-            
-            {{ form }}
-            
-            <input type="submit" value="Submit">
-        </fieldset>
-    </form>
+    <div class="section">
+        <div class="container">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ hostelFullMessage }}
+                {{ Space }}
+                {{ roomcount }}
+                <fieldset>
+                    <legend>Payment Dummy Form</legend>
+                    
+                    {{ form }}
+                    
+                    <input type="submit" value="Submit">
+                </fieldset>
+            </form>
+        </div>
+    </div>
 
 <!--    if <name>
 -->

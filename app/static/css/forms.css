@@ -1,10 +1,11 @@
 form {
     width: 80%;
     margin: auto;
-}    
+}
+
 input, .block {
     display: block;
-    height: 2em;
+    height: 3em;
     width: 60%;
     margin: 8px auto;
     border-radius: 5px;
@@ -16,15 +17,35 @@ input[type="text"], input[type="search"] {
 
 input[type="radio"], input[type="checkbox"], form fieldset ul#id_sex li {
     list-style: none;
-    display: inline;
+    display: inline-block;
     height: 2em;
-    width: auto;
-    border: 3px solid olive;
+    margin-right: 16px;
+}
+
+input[type="radio"]:active {
+    background-color: red;
+}
+
+form fieldset ul#id_sex {
+    width: fit-content;
+    padding: 0;
+    margin: auto;
 }
 
 input[type="submit"] {
+    outline: none;
+    padding: 8px;
     background-color: red;
-    /* background-color: teal; */
+}
+
+input[type="submit"]:hover {
+    color: white;
+    background-color: rgb(112, 3, 3);
+}
+
+input[type="submit"]:active {
+    color: white;
+    background-color: rgb(31, 0, 0);
 }
 
 ul#id_sex li>::marker, ul#id_sex li ::marker, ul#id_sex li+::marker, ::marker {

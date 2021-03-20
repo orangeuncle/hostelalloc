@@ -1,16 +1,21 @@
 {% extends "blog/base.html" %}
 
 {% block content%}
-    <div class="section">
+    <div class="section col">
         {% for hostel in hostel_list %}
-            <div class="card col">
-                <h2>{{ hostel.name }}</h2>
-                <p>{{ hostel.rooms }}</br></br></p>
+            <div class="card">
+                <p> <b>{{ hostel.name }}</b> </p>
+                <p> {{ hostel.rooms }}</br> </p>
             </div>
         {% endfor %}
     </div>
 
-    <div class="section">
+    <div class="section bg">
+        <h1>Find your room</h1>
+        {% if error %}
+            
+            <b style="color:red;">{{ error }}</b>
+        {% endif %}
         <form action="" method="post">
             {% csrf_token %}
             
@@ -19,5 +24,23 @@
             <input type="submit" value="submit">
         </form>
     </div>
+
+    <div class="section teal">
+        <div class="container">
+                <h1>Your room details</h1>
+                <p>Once you search your data will appear here</p>
+                <div class="detail"> <b>Your Name:</b> {{ pullSearchName }} </div>
+                <div class="detail"> <b>Your RegNo:</b> {{ pullSearchRegNo }} </div>
+                <div class="detail"> <b>Your Room:</b> {{ pullSearchRoom }} </div>
+                <div class="detail"> <b>Your Hostel:</b> {{ pullSearchHostel }} </div>
+        </div>
+    </div>
+
+    <!-- <script>
+        var detail = document.getElementsByClassName("detail")
+        for (i = 0; i < detail.length; i++) {
+            detail[i].style = "display:none;";
+        }
+    </script> -->
     
 {% endblock content %}

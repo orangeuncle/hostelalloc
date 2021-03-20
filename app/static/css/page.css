@@ -1,3 +1,40 @@
-.container {
+* {
+    font-family: 'arvo';
+}
+
+h1,h2 {
+    text-decoration: underline;
+}
+p {
+    text-align: center;
+}
+.section {
+    margin: 8px auto;
+    padding: 8px;
     width: 100%;
+}
+.container {
+    margin: auto;
+    width: 80%;
+}
+.card {
+    border-radius: 20px;
+    background-color: teal;
+}
+.col {
+    display: grid;
+    grid-gap: 8px;
+    grid-template-columns: 3fr 3fr 3fr;
+    margin: 50px auto;
+}
+.teal {
+    background-color: teal;
+}
+.detail {
+    color: White;
+    background-color: rgba(255,255,255,.3);
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 8px 8px 8px 8px;
+    margin: 4px auto;    
 }
