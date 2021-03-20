@@ -1,26 +1,103 @@
-<form action="" method="post">
-    {% csrf_token %}
-    <fieldset>
-        <legend>Payment Dummy Form</legend>
-        <!-- Student name -->
-        <label for="std_name">student name</label>
-        <input type="text" name="name" id="std_name">
-        <!-- Reg no -->
-        <label for="reg_no">Reg No</label>
-        <input type="text" name="regNo" id="reg_no">
-        <!-- Sex -->
-        <label for="Sex">Sex</label>
-        Male
-        <input type="radio" name="sex" id="" value="0">
-        female
-        <input type="radio" name="sex" id="" value="1">
-        <label for="Payment">Payment</label>
-        <!-- Checkboxes -->
-        Tuition
-        <input type="checkbox" name="payment" id="" value="Tuition">
-        Accomodation
-        <input type="checkbox" name="payment" id="" value="Accomodation">
+{% extends "blog/base.html" %}
+
+{% block content %}
+    {{ listData }}
+{% endblock %}
+
+
+for i in hostelListQuery:
+        if i.rooms > 0:
+            if i.room_size > 0:
+                val = i.rooms * i.room_size
+                print(i, i.rooms, i.room_size,num)
+            elif i.room_size == 0:
+                val = i.roomBaseSize
+                print(i, i.rooms, i.room_size,num)
+
+        num += val
+        print(num)
+    return num
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # Checks if there is available rooms in the hostel
+    def availableRoomCalc(hostelListQuery):
+        num = 0
+        val = 0
         
-        <input type="submit" value="Submit">
-    </fieldset>
-</form>
+        print(hostelListQuery[0].rooms)
+        print(hostelListQuery[1].rooms)
+        print(hostelListQuery[2].rooms, " \n")
+        
+        print(hostelListQuery[0].room_size)
+        print(hostelListQuery[1].room_size)
+        print(hostelListQuery[2].room_size, " \n")
+        
+        for i in hostelListQuery:
+            print(i, i.rooms, i.room_size,num)
+            print(range(i.rooms))
+    
+            while i.rooms > 0:
+                if i.rooms == 0 and i.room_size == 0:
+                    break
+                elif i.rooms > 0 and i.room_size > 0 and i.rooms-1 >= 1:
+                        val += i.room_size
+                elif i.rooms > 0 and i.room_size > 0 and i.rooms-1 == 0:
+                    val += i.roomBaseSize
+                    i.rooms == 0
+                i.rooms -= 1
+                
+            
+    
+    
+            num += val
+            print(num)
+        return num
+    
+    
+    
+    
+    roomcount = availableRoomCalc(hostel_list)
+    
+
+
+
+
+
+
+
+    for i in hostelListQuery:
+        if i.rooms > 0:
+            if i.room_size > 0 and i.room_size != i.roomBaseSize:
+                if i.room_size-1 >= 1:
+                    val += i.room_size
+                    i.rooms -= 1
+                    val += i.rooms * i.roomBaseSize
+                else:
+                    val += i.room_size
+                    i.rooms -= 1
+                print(i, i.rooms, i.room_size,num)
+            elif i.room_size > 0 and i.room_size == i.roomBaseSize:
+                val += i.rooms * i.roomBaseSize
+            if i.room_size == 0:
+                val += i.roomBaseSize
+                i.room -= 1
+                print(i, i.rooms, i.room_size,num)
+        elif i.rooms == 0:
+            val += 0

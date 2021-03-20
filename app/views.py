@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from .forms import *
 from .models import Hostel
 from .models import Student
+from .actions import totalNumberStudents
 
 
 # HttResponse Handle's responses and requests
@@ -47,6 +48,8 @@ def allocationAction(studentData,hListArray):
                     h.rooms = 0
                 h.save()
                 break
+        elif h.rooms == 0 and h.room_size == 0:
+            print("this guy")
         elif h.rooms == 0:
             continue
     
@@ -78,32 +81,27 @@ def availableRoomCalc(hostelListQuery):
     print(hostelListQuery[2].room_size, " \n")
     
     for i in hostelListQuery:
-        if i.rooms > 0:
-            if i.room_size > 0:
-                val = i.rooms * i.room_size
-                print(i, i.rooms, i.room_size,num)
-            elif i.room_size == 0:
-                val = i.roomBaseSize
-                print(i, i.rooms, i.room_size,num)
+        val += i.rooms
 
-        num += val
-        print(num)
+    num += val
+    print("num : ", num)
     return num
 
 
 
 
-roomcount = availableRoomCalc(hostel_list)
 
 
 
 
 
-
+# ===================================     VIEWS    ===========================================
 
 
 def home(request):
     
+    roomcount = availableRoomCalc(hostel_list)
+
     hostelFull = "Sorry you can't pay for hostel. The hostel is full"
     
     # if this is a POST request we need to process the form data
@@ -119,33 +117,40 @@ def home(request):
 
             rqst = request.POST
             stdDetails = {}
+            print(rqst['Payment'].lower())
             for key in rqst:
                     if key == 'name' or key == 'sex' or key == 'regNo' or key == 'Payment':
-                        stdDetails[key] = rqst[key]
+                        stdDetails[key] = rqst[key].lower()
 
             # If payed full or accomodation run this
             if stdDetails['Payment'] == "full":
 
                 # Run allocation function
                 allocationAction(stdDetails,hostel_list)
+            else:
+                return render(request,'blog/search.html', {'noHostelPay':"You didn't pay for hostel"})
 
-        return HttpResponseRedirect('/search/')
+
+        return HttpResponseRedirect('/search/', {'noHostelPay':"You didn't pay for hostel"})
 
     # if a GET (or any other method) we'll create a blank form
     else:
         form = PaymentForm()
-        if availableRoomCalc(hostel_list) < 0:
+        if availableRoomCalc(hostel_list) <= 0:
 
-            return render(request, 'blog/home.html', {'form':form, 'hostelFullMessage':hostelFull, 'g':g}) 
+            return render(request, 'blog/home.html', {'form':form, 'hostelFullMessage':hostelFull}) 
         else:
 
-            return render(request, 'blog/home.html', {'form':form, 'Space':"There's space",'roomcount':roomcount})
+            return render(request, 'blog/home.html', {'form':form, 'Space':"Available rooms",'roomcount':roomcount})
 
 def search(request):
+    link = render(request, 'blog/hostelOccupancy.html')
     form = SearchForm
+
     context = {
         'hostel_list': hostel_list,
-        'form':form
+        'form': form,
+        'numStudentsTotal': totalNumberStudents()
     }
 
     if request.method == 'POST':
@@ -208,8 +213,41 @@ def about(request):
 def playground(request):
     return render(request, 'blog/playground.html')
 
+def hostelOccupancy(request):
+    link = render(request, 'blog/hostelOccupancy.html')
+    form = HostelSearchForm
+    context = {
+        'hostel_list': hostel_list,
+        'form': form,
+    }
+
+    if request.method == 'POST':
+        
+        form = HostelSearchForm(request.POST)
+
+        if form.is_valid():
+
+
+            rqst = request.POST
+            
+            try:
+                pullSearch = Hostel.objects.get(name=rqst['Hostel_Name'].capitalize())
+            except:
+                context['error'] = "There's a problem with your entry, check it and try again!"
+                return render(request, 'blog/hostelOccupancy.html', context)
+            
+            context['pullSearchName'] = pullSearch.name
+            context['pullSearchRoomBaseSize'] = pullSearch.roomBaseSize
+            context['pullSearchRooms'] = pullSearch.rooms
+            print(context)
+            return render(request, 'blog/hostelOccupancy.html', context)
+
+
+        else:
+            form = HostelSearchForm()
+
+    return render(request, 'blog/hostelOccupancy.html', context)
 
 
 
-
-# ===============================  BackUps  ===================================
+# ===============================  Temp. BackUps  ===================================

@@ -5,23 +5,28 @@
         {% for hostel in hostel_list %}
             <div class="card">
                 <p> <b>{{ hostel.name }}</b> </p>
-                <p> {{ hostel.rooms }}</br> </p>
+                <p> Available Rooms {{ hostel.rooms }}</br> </p>
             </div>
         {% endfor %}
     </div>
-
+    <div class="section">
+        There are a total of {{ numStudentsTotal }} students
+        {{ noHostelPay }}
+    </div>
     <div class="section bg">
-        <h1>Find your room</h1>
+        <h1>Find a student's detail</h1>
+        <p>want to find hostel detail instead? <a href="/hostelOccupancy/" target="" rel="noopener noreferrer">click here</a></p>
         {% if error %}
-            
+
             <b style="color:red;">{{ error }}</b>
         {% endif %}
         <form action="" method="post">
             {% csrf_token %}
             
             {{ form }}
-
-            <input type="submit" value="submit">
+            {% if form %}
+                <input type="submit" value="submit">
+            {% endif %}
         </form>
     </div>
 
